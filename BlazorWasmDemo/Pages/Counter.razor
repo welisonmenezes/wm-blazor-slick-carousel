@@ -1,0 +1,27 @@
+@page "/counter"
+
+<h1>Counter</h1>
+
+<p>Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+<BlazorSlickCarousel>
+    <BlazorSlickCarouselContent>
+        <div>Item 1 Car 1</div>
+        <div>Item 2 Car 1</div>
+        <div>Item 3 Car 1</div>
+        <div>Item 4 Car 1</div>
+        <div>Item 5 Car 1</div>
+    </BlazorSlickCarouselContent>
+    <BlazorSlickCarouselLoading>Carregando...</BlazorSlickCarouselLoading>
+</BlazorSlickCarousel>
+
+@code {
+    private int currentCount = 0;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+}

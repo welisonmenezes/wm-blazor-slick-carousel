@@ -1,0 +1,40 @@
+<div class="WMBSC loading">
+    <div class="WMBSC-content" @ref="WMBSCReference">@BlazorSlickCarouselContent</div>
+    @if (BlazorSlickCarouselLoading == null)
+    {
+        <div class="WMBSC-loading">Loading...</div>
+    }
+    else
+    {
+        <div class="WMBSC-loading">@BlazorSlickCarouselLoading</div>
+    }
+</div>
+
+@using Microsoft.JSInterop
+
+@code {
+    [Parameter]
+    public RenderFragment BlazorSlickCarouselContent { get; set; }
+
+    [Parameter]
+    public RenderFragment BlazorSlickCarouselLoading { get; set; }
+
+    [Inject]
+    protected IJSRuntime jsRuntime { get; set; }
+
+    protected IWMBSC TheWMBSC;
+    ElementReference WMBSCReference;
+
+    protected override void OnInitialized()
+    {
+        TheWMBSC = new WMBSCCore(jsRuntime);
+    }
+
+    protected override async Task OnAfterRenderAsync(bool firstRender)
+    {
+        if (firstRender)
+        {
+            await TheWMBSC.Init(WMBSCReference);
+        }
+    }
+}
