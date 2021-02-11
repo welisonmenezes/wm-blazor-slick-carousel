@@ -18,19 +18,23 @@ public sealed class WMBSCCore: IWMBSC
     //private Task<IJSObjectReference> ModuleSlick => _moduleSlick ??= jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/WMBlazorSlickCarousel/slick.min.js").AsTask();
     private Task<IJSObjectReference> Module => _module ??= jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/WMBlazorSlickCarousel/wm-blazor.slick-carousel.js").AsTask();
 
+    public bool addJquery;
+
     public WMBSCCore(IJSRuntime jsRuntime)
     {
         this.jsRuntime = jsRuntime;
     }
 
-    public void Configure()
-    {}
+    public void Configure(bool addJquery)
+    {
+        this.addJquery = addJquery;
+    }
 
     public async Task Init(ElementReference element)
     {
         var module = await this.Module;
-        string ret = await module.InvokeAsync<string>("WMBSCInit", element);
-        
+        string ret = await module.InvokeAsync<string>("WMBSCInit", element, this.addJquery);
+        System.Console.WriteLine(addJquery);
         System.Console.WriteLine("O retorno do js é: " + ret);
     }
 

@@ -4,6 +4,6 @@ using Microsoft.AspNetCore.Components;
 
 public interface IWMBSC
 {
-    void Configure();
+    void Configure(bool addJquery);
     Task Init(ElementReference element);
 }

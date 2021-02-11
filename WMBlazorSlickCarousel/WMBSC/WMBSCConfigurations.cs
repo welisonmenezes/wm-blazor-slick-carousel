@@ -1,0 +1,51 @@
+public class WMBSCConfigurations
+{
+    public bool accessibility;
+    public bool adaptiveHeight;
+    public bool autoplay;
+    public int autoplaySpeed;
+    public bool arrows;
+    public string asNavFor;
+    public string appendArrows;
+    public string appendDots;
+    public string prevArrow;
+    public string nextArrow;
+    public bool centerMode;
+    public string centerPadding;
+    public string cssEase;
+    public bool dots;
+    public string dotsClass;
+    public bool draggable;
+    public bool fade;
+    public bool focusOnSelect;
+    public string easing;
+    public double edgeFriction;
+    public bool infinite;
+    public int initialSlide;
+    public string lazyLoad;
+    public bool mobileFirst;
+    public bool pauseOnFocus;
+    public bool pauseOnHover;
+    public bool pauseOnDotsHover;
+    public string respondTo;
+    
+    // todo
+    public object responsive;
+    public int rows;
+    public int slidesPerRow;
+    public int slidesToShow;
+    public int slidesToScroll;
+    public int speed;
+    public bool swipe;
+    public bool swipeToSlide;
+    public bool touchMove;
+    public int touchThreshold;
+    public bool useCSS;
+    public bool useTransform;
+    public bool variableWidth;
+    public bool vertical;
+    public bool verticalSwiping;
+    public bool rtl;
+    public bool waitForAnimate;
+    public int zIndex;
+}

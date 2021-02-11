@@ -1,16 +1,19 @@
-export function WMBSCInit(element) {
-    return loadJquery(element);
+export function WMBSCInit(element, addJquery) {
+    return loadJquery(element, addJquery);
 }
 
-function loadJquery(element) {
+function loadJquery(element, addJquery) {
     if (hasJquery()) {
         loadSlick(element);
     } else {
-        return loadScript(
-            "./_content/WMBlazorSlickCarousel/jquery-3.5.1.min.js",
-            loadSlick,
-            element
-        );
+        if (addJquery) {
+            return loadScript(
+                "./_content/WMBlazorSlickCarousel/jquery-3.5.1.min.js",
+                loadSlick,
+                element
+            );
+        }
+        return loadSlick(element);
     }
 }
 

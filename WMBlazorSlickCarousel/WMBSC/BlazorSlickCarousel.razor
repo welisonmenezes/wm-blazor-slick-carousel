@@ -19,16 +19,16 @@
     [Parameter]
     public RenderFragment BlazorSlickCarouselLoading { get; set; }
 
+    [Parameter]
+    public bool addJquery { get; set; }
+
     [Inject]
     protected IJSRuntime jsRuntime { get; set; }
 
-    protected IWMBSC TheWMBSC;
+    [Inject]
+    protected IWMBSC TheWMBSC { get; set; }
+    
     ElementReference WMBSCReference;
-
-    protected override void OnInitialized()
-    {
-        TheWMBSC = new WMBSCCore(jsRuntime);
-    }
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
