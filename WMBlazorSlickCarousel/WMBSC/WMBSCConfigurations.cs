@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 
-public class WMBSCConfigurations: WMBSCOptions
+public class WMBSCInitialSettings: WMBSCSettings
 {
-    public IEnumerable<WMBSCResponsive> responsive {get; set; } = null;
+    public IEnumerable<WMBSCResponsiveSettings> responsive {get; set; } = null;
 }
 
-public class WMBSCResponsive
+public class WMBSCResponsiveSettings
 {
     public int breakpoint {get; set; }
-    public WMBSCOptions settings {get; set; } = null;
+    public WMBSCSettings settings {get; set; } = null;
 }
 
-public class WMBSCOptions 
+public class WMBSCSettings 
 {
     public bool accessibility {get; set; } = true;
     public bool adaptiveHeight {get; set; } = false;

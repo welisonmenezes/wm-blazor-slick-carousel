@@ -21,18 +21,12 @@
 <div class="arrows"></div>
 
 @code {
+    public WMBSCInitialSettings configurations;
     private int currentCount = 0;
-
-    private void IncrementCount()
-    {
-        currentCount++;
-    }
-
-    public WMBSCConfigurations configurations;
 
     protected override void OnInitialized()
     {
-        configurations = new WMBSCConfigurations {
+        configurations = new WMBSCInitialSettings {
             arrows = true,
             dots = true,
             slidesToShow = 2,
@@ -41,5 +35,10 @@
             appendDots = ".dots",
             appendArrows = ".arrows"
         };
+    }
+
+    private void IncrementCount()
+    {
+        currentCount++;
     }
 }

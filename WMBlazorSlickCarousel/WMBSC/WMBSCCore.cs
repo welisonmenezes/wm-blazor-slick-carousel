@@ -26,7 +26,7 @@ public sealed class WMBSCCore: IWMBSC
         this.addJquery = addJquery;
     }
 
-    public async Task Init(ElementReference element, WMBSCConfigurations configurations, Dictionary<string, string> configCallbacks)
+    public async Task Init(ElementReference element, WMBSCInitialSettings configurations, Dictionary<string, string> configCallbacks)
     {
         var module = await this.Module;
         await module.InvokeVoidAsync("WMBSCInit", element, configurations, configCallbacks, this.addJquery);
@@ -81,7 +81,7 @@ public sealed class WMBSCCore: IWMBSC
         await module.InvokeVoidAsync("WMBSCDestroy", this.element);
     }
 
-    public async Task SlickConstroy(WMBSCConfigurations configurations)
+    public async Task SlickConstroy(WMBSCInitialSettings configurations)
     {
         var module = await this.Module;
         await module.InvokeVoidAsync("WMBSCConstroy", this.element, configurations);

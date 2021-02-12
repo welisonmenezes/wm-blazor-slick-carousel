@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Components;
 public interface IWMBSC
 {
     void Configure(bool addJquery = true);
-    Task Init(ElementReference element, WMBSCConfigurations configurations, Dictionary<string, string> configCallbacks);
+    Task Init(ElementReference element, WMBSCInitialSettings configurations, Dictionary<string, string> configCallbacks);
     Task<int> SlickCurrentSlide();
     Task SlickGoTo(int slideNumber);
     Task SlickNext();
@@ -15,5 +15,5 @@ public interface IWMBSC
     Task SlickAdd(string newItem);
     Task SlickRemove(int slideNumber, bool removeBefore);
     Task SlickDestroy();
-    Task SlickConstroy(WMBSCConfigurations configurations);
+    Task SlickConstroy(WMBSCInitialSettings configurations);
 }

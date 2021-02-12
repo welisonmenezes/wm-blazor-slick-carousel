@@ -6,6 +6,9 @@ Welcome to your new app.
 
 <BlazorSlickCarousel 
     @ref="theCarousel"
+    Id="my-carousel"
+    CustomClass="my-custom-class"
+    ContainerCustomClass="my-custom-class-to-container"
     Configurations="configurations" 
     ProjectName="BlazorWasmDemo"
     CallbackAfterChange="MyAfterChange"
@@ -19,6 +22,7 @@ Welcome to your new app.
     CallbackSwipe="MySwipe"
     CallbackLazyLoaded="MyLazyLoaded"
     CallbackLazyLoadError="MyLazyLoadError">
+
     <BlazorSlickCarouselContent>
         <div>
             <img data-lazy="https://loremflickr.com/540/240?random=1" alt="">
@@ -39,6 +43,7 @@ Welcome to your new app.
             <img data-lazy="https://loremflickr.com/540/240?random=6" alt="">
         </div>
     </BlazorSlickCarouselContent>
+
 </BlazorSlickCarousel>
 
 <div>
@@ -56,32 +61,42 @@ Welcome to your new app.
 
 @code {
     public BlazorSlickCarousel theCarousel;
-    public WMBSCConfigurations configurations;
-    public WMBSCResponsive responsive;
-    public WMBSCOptions options;
-    public List<WMBSCResponsive> responsiveList;
+    public WMBSCInitialSettings configurations;
 
     protected override void OnInitialized()
     {
-        options = new WMBSCOptions {
+        /************************************************************
+         *
+         *  CONFIGURATIONS
+         *
+         ************************************************************/
+        WMBSCSettings breakpoint400Settings = new WMBSCSettings {
             slidesToShow = 1,
             arrows = true
         };
-        responsive = new WMBSCResponsive {
+        WMBSCResponsiveSettings responsive = new WMBSCResponsiveSettings {
             breakpoint = 400,
-            settings = options
+            settings = breakpoint400Settings
         };
-        responsiveList = new List<WMBSCResponsive>();
-        responsiveList.Add(responsive);
-        configurations = new WMBSCConfigurations {
+
+        List<WMBSCResponsiveSettings> responsiveSettingsList = new List<WMBSCResponsiveSettings>();
+        responsiveSettingsList.Add(responsive);
+
+        configurations = new WMBSCInitialSettings {
             arrows = true,
             dots = true,
             slidesToShow = 2,
             slidesToScroll = 1,
             infinite = false,
-            responsive = responsiveList
+            responsive = responsiveSettingsList
         };
     }
+
+    /************************************************************
+     *
+     *  CALLBACKS
+     *
+     ************************************************************/
 
     [JSInvokable]
     public static void MyAfterChange(int currentSlide)
@@ -149,6 +164,13 @@ Welcome to your new app.
         System.Console.WriteLine("MyLazyLoadError");
     }
 
+
+    /************************************************************
+     *
+     *  METHODS
+     *
+     ************************************************************/
+
     public async void ShowCurrentSlideIndex()
     {
         int currentSlide = await theCarousel.CurrentSlide();
@@ -172,7 +194,7 @@ Welcome to your new app.
 
     public async void Add() 
     {
-        await theCarousel.Add("<img src='https://loremflickr.com/540/240?random=7' />");
+        await theCarousel.Add("<div><img src='https://loremflickr.com/540/240?random=7' /></div>");
     }
 
     public async void Remove(int slideNumber, bool removeBefore)
