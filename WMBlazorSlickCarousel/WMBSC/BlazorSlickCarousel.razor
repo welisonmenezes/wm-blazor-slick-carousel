@@ -37,9 +37,6 @@
     [Parameter]
     public string CallbackInit { get; set;}
 
-    [Parameter]
-    public BlazorSlickCarousel Self { get; set; }
-
     [Inject]
     protected IJSRuntime jsRuntime { get; set; }
 
@@ -60,4 +57,21 @@
             await TheWMBSC.Init(WMBSCReference, Configurations, ConfigCallbacks);
         }
     }
+
+    public async Task<int> CurrentSlide() {
+        return await TheWMBSC.SlickCurrentSlide();
+    }
+
+    public async Task GoTo(int slideNumber) {
+        await TheWMBSC.SlickGoTo(slideNumber);
+    }
+
+    public async Task Next() {
+        await TheWMBSC.SlickNext();
+    }
+
+    public async Task Prev() {
+        await TheWMBSC.SlickPrev();
+    }
+    
 }

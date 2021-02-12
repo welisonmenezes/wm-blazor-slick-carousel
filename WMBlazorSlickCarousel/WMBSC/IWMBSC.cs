@@ -7,4 +7,8 @@ public interface IWMBSC
 {
     void Configure(bool addJquery = true);
     Task Init(ElementReference element, WMBSCConfigurations configurations, Dictionary<string, string> configCallbacks);
+    Task<int> SlickCurrentSlide();
+    Task SlickGoTo(int slideNumber);
+    Task SlickNext();
+    Task SlickPrev();
 }

@@ -5,6 +5,7 @@
 Welcome to your new app.
 
 <BlazorSlickCarousel 
+    @ref="theCarousel"
     Configurations="configurations" 
     ProjectName="BlazorWasmDemo"
     CallbackAfterChange="MyAfterChange"
@@ -20,28 +21,23 @@ Welcome to your new app.
     </BlazorSlickCarouselContent>
 </BlazorSlickCarousel>
 
-<hr>
-
-<BlazorSlickCarousel>
-    <BlazorSlickCarouselContent>
-        <div>Item 1 Car 2</div>
-        <div>Item 2 Car 2</div>
-        <div>Item 3 Car 2</div>
-    </BlazorSlickCarouselContent>
-    <BlazorSlickCarouselLoading>
-        <h2>Carregando o carousel...</h2>
-    </BlazorSlickCarouselLoading>
-</BlazorSlickCarousel>
+<div>
+    <button @onclick="@(e => ShowCurrentSlideIndex())">Log the Current Slide</button>
+    <button @onclick="@(e => GoTo(2))">Go To 3</button>
+    <button @onclick="@(e => Next())">Next Slide</button>
+    <button @onclick="@(e => Prev())">Prev Slide</button>
+</div>
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
 @code {
+    public BlazorSlickCarousel theCarousel;
     public WMBSCConfigurations configurations;
     public WMBSCResponsive responsive;
     public WMBSCOptions options;
     public List<WMBSCResponsive> responsiveList;
 
-    protected override async Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
         options = new WMBSCOptions {
             slidesToShow = 1,
@@ -79,5 +75,26 @@ Welcome to your new app.
     public static void MyInit()
     {
         System.Console.WriteLine("MyInit");
+    }
+
+    public async void ShowCurrentSlideIndex()
+    {
+        int currentSlide = await theCarousel.CurrentSlide();
+        System.Console.WriteLine(currentSlide);
+    }
+
+    public async void GoTo(int slideNumber) 
+    {
+        await theCarousel.GoTo(slideNumber);
+    }
+
+    public async void Next() 
+    {
+        await theCarousel.Next();
+    }
+
+    public async void Prev() 
+    {
+        await theCarousel.Prev();
     }
 }

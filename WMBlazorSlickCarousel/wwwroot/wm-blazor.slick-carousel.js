@@ -2,6 +2,22 @@ export function WMBSCInit(element, configurations, configCallbacks, addJquery) {
     return loadJquery(element, configurations, configCallbacks, addJquery);
 }
 
+export function WMBSCCurrentSlide(element) {
+    return $(element).slick('slickCurrentSlide');
+}
+
+export function WMBSCGoTo(element, slideNumber) {
+    $(element).slick('slickGoTo', slideNumber);
+}
+
+export function WMBSCNext(element) {
+    $(element).slick('slickNext');
+}
+
+export function WMBSCPrev(element) {
+    $(element).slick('slickPrev');
+}
+
 function loadJquery(element, configurations, configCallbacks, addJquery) {
     if (hasJquery()) {
         loadSlick(element, configurations, configCallbacks);

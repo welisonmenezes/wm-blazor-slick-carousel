@@ -12,6 +12,7 @@ public sealed class WMBSCCore: IWMBSC
     private readonly IJSRuntime jsRuntime;
     private Task<IJSObjectReference> _module;
     private Task<IJSObjectReference> Module => _module ??= jsRuntime.InvokeAsync<IJSObjectReference>("import", "./_content/WMBlazorSlickCarousel/wm-blazor.slick-carousel.js").AsTask();
+    private ElementReference element;
 
     public bool addJquery;
 
@@ -28,9 +29,32 @@ public sealed class WMBSCCore: IWMBSC
     public async Task Init(ElementReference element, WMBSCConfigurations configurations, Dictionary<string, string> configCallbacks)
     {
         var module = await this.Module;
-        string ret = await module.InvokeAsync<string>("WMBSCInit", element, configurations, configCallbacks, this.addJquery);
-        System.Console.WriteLine(addJquery);
-        System.Console.WriteLine("O retorno do js é: " + ret);
+        await module.InvokeVoidAsync("WMBSCInit", element, configurations, configCallbacks, this.addJquery);
+        this.element = element;
+    }
+
+    public async Task<int> SlickCurrentSlide()
+    {
+        var module = await this.Module;
+        return await module.InvokeAsync<int>("WMBSCCurrentSlide", this.element);
+    }
+
+    public async Task SlickGoTo(int slideNumber)
+    {
+        var module = await this.Module;
+        await module.InvokeVoidAsync("WMBSCGoTo", this.element, slideNumber);
+    }
+
+    public async Task SlickNext()
+    {
+        var module = await this.Module;
+        await module.InvokeVoidAsync("WMBSCNext", this.element);
+    }
+
+    public async Task SlickPrev()
+    {
+        var module = await this.Module;
+        await module.InvokeVoidAsync("WMBSCPrev", this.element);
     }
 
 }
