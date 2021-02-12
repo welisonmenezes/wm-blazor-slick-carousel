@@ -1,0 +1,46 @@
+@page "/html-content"
+
+<div>
+    <h1>Blazor Slick Carousel Demo</h1>
+    <h2>Html content implementation demo.</h2>
+
+    <br><hr><br>
+
+    <BlazorSlickCarousel Configurations="configurations">
+        <BlazorSlickCarouselContent>
+            <div>
+                <div>Test 1</div>
+            </div>
+            <div>
+                <div>Test 2</div>
+            </div>
+            <div>
+                <div>Test 3</div>
+            </div>
+            <div>
+                <div>Test 4</div>
+            </div>
+        </BlazorSlickCarouselContent>
+        <BlazorSlickCarouselLoading>Carregando...</BlazorSlickCarouselLoading>
+    </BlazorSlickCarousel>
+
+    <div class="dots"></div>
+    <div class="arrows"></div>
+</div>
+
+@code {
+    public WMBSCInitialSettings configurations;
+
+    protected override void OnInitialized()
+    {
+        configurations = new WMBSCInitialSettings {
+            arrows = true,
+            dots = true,
+            slidesToShow = 2,
+            slidesToScroll = 1,
+            infinite = true,
+            appendDots = ".dots",
+            appendArrows = ".arrows"
+        };
+    }
+}

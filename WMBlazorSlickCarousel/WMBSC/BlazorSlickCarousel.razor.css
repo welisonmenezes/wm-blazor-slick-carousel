@@ -8,6 +8,7 @@
     opacity: 0;
     height: 0;
     overflow: hidden;
+    position: relative;
 }
 .WMBSC.loading .WMBSC-loading {
     display: block;
@@ -98,4 +99,129 @@
 }
 .WMBSC ::deep .slick-arrow.slick-hidden {
     display: none;
+}
+/* THEME */
+.WMBSC ::deep .slick-loading .slick-list{
+    background: #fff url('./ajax-loader.gif') center center no-repeat;
+}
+.WMBSC ::deep .slick-prev,
+.WMBSC ::deep .slick-next {
+    font-size: 0;
+    line-height: 0;
+    position: absolute;
+    top: calc(50% - 20px);
+    display: block;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    outline: none;
+    background: transparent;
+    background-color: #4A5989;
+    box-shadow: 3px 2px 10px 0px rgba(0,0,0,0.3);
+    -webkit-box-shadow: 3px 2px 10px 0px rgba(0,0,0,0.3);
+    -moz-box-shadow: 3px 2px 10px 0px rgba(0,0,0,0.3);
+    z-index: 2;
+}
+.WMBSC ::deep .slick-prev:hover,
+.WMBSC ::deep .slick-prev:focus,
+.WMBSC ::deep .slick-next:hover,
+.WMBSC ::deep .slick-next:focus {
+    outline: none;
+}
+.WMBSC ::deep .slick-prev:hover:before,
+.WMBSC ::deep .slick-prev:focus:before,
+.WMBSC ::deep .slick-next:hover:before,
+.WMBSC ::deep .slick-next:focus:before {
+    opacity: 1;
+}
+.WMBSC ::deep .slick-prev.slick-disabled:before,
+.WMBSC ::deep .slick-next.slick-disabled:before {
+    opacity: 0.25;
+}
+.WMBSC ::deep .slick-prev:before,
+.WMBSC ::deep .slick-next:before {
+    font-family: "slick";
+    font-size: 20px;
+    line-height: 15px;
+    height: 30px;
+    width: 30px;
+    opacity: 0.75;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+.WMBSC ::deep .slick-prev {
+    left: 0;
+}
+.WMBSC ::deep [dir="rtl"] .slick-prev {
+    right: 0;
+    left: auto;
+}
+.WMBSC ::deep .slick-prev:before {
+    content: "←";
+}
+.WMBSC ::deep [dir="rtl"] .slick-prev:before {
+    content: "→";
+}
+.WMBSC ::deep .slick-next {
+    right: 0;
+}
+.WMBSC ::deep [dir="rtl"] .slick-next {
+    right: auto;
+    left: 0;
+}
+.WMBSC ::deep .slick-next:before {
+    content: "→";
+}
+.WMBSC ::deep [dir="rtl"] .slick-next:before {
+    content: "←";
+}
+.WMBSC ::deep .slick-dotted.slick-slider {
+    margin-bottom: 30px;
+}
+.WMBSC ::deep .slick-dots {
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 20px 0 0 0;
+    list-style: none;
+    text-align: center;
+}
+.WMBSC ::deep .slick-dots li {
+    position: relative;
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+}
+.WMBSC ::deep .slick-dots li button {
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    cursor: pointer;
+    color: transparent;
+    border: 0;
+    outline: none;
+    background: transparent;
+    border-radius: 50%;
+    background-color: #4A5989;
+    opacity: 1;
+}
+.WMBSC ::deep .slick-dots li button:hover,
+.WMBSC ::deep .slick-dots li button:focus {
+    outline: none;
+}
+.WMBSC ::deep .slick-dots li.slick-active button {
+    opacity: 0.5;
 }
