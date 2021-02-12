@@ -10,7 +10,11 @@ Welcome to your new app.
     ProjectName="BlazorWasmDemo"
     CallbackAfterChange="MyAfterChange"
     CallbackBeforeChange="MyBeforeChange"
-    CallbackInit="MyInit">
+    CallbackBreakpoint="MyBreakpoint"
+    CallbackDestroy="MyDestroy"
+    CallbackEdge="MyEdge"
+    CallbackInit="MyInit"
+    CallbackReInit="MyReInit">
     <BlazorSlickCarouselContent>
         <img src="https://loremflickr.com/540/240?random=1" alt="">
         <img src="https://loremflickr.com/540/240?random=2" alt="">
@@ -58,7 +62,7 @@ Welcome to your new app.
             dots = true,
             slidesToShow = 2,
             slidesToScroll = 1,
-            infinite = true,
+            infinite = false,
             responsive = responsiveList
         };
     }
@@ -76,9 +80,33 @@ Welcome to your new app.
     }
 
     [JSInvokable]
+    public static void MyBreakpoint(object breakpoint)
+    {
+        System.Console.WriteLine("MyBreakpoint");
+    }
+
+    [JSInvokable]
+    public static void MyDestroy()
+    {
+        System.Console.WriteLine("MyDestroy");
+    }
+
+    [JSInvokable]
+    public static void MyEdge()
+    {
+        System.Console.WriteLine("MyEdge");
+    }
+
+    [JSInvokable]
     public static void MyInit()
     {
         System.Console.WriteLine("MyInit");
+    }
+
+    [JSInvokable]
+    public static void MyReInit()
+    {
+        System.Console.WriteLine("MyReInit");
     }
 
     public async void ShowCurrentSlideIndex()

@@ -142,7 +142,11 @@ function configureAppendDotsAndArrows(element, config) {
 function configureCallbacks(element, configCallbacks) {
     configureAfterChangeCallback(element, configCallbacks);
     configureBeforeChangeCallback(element, configCallbacks);
+    configureBreakpointCallback(element, configCallbacks);
+    configureDestroyCallback(element, configCallbacks);
+    configureEdgeCallback(element, configCallbacks);
     configureInitCallback(element, configCallbacks);
+    configureReInitCallback(element, configCallbacks);
 }
 
 function configureAfterChangeCallback(element, configCallbacks) {
@@ -161,10 +165,42 @@ function configureBeforeChangeCallback(element, configCallbacks) {
     }
 }
 
+function configureBreakpointCallback(element, configCallbacks) {
+    if (configCallbacks['projectName'] && configCallbacks['callbackBreakpoint']) {
+        $(element).on('breakpoint', function(event, slick, breakpoint){
+            DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackBreakpoint'], breakpoint);
+        });
+    }
+}
+
+function configureDestroyCallback(element, configCallbacks) {
+    if (configCallbacks['projectName'] && configCallbacks['callbackDestroy']) {
+        $(element).on('destroy', function(event, slick){
+            DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackDestroy']);
+        });
+    }
+}
+
+function configureEdgeCallback(element, configCallbacks) {
+    if (configCallbacks['projectName'] && configCallbacks['callbackEdge']) {
+        $(element).on('edge', function(event, slick){
+            DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackEdge']);
+        });
+    }
+}
+
 function configureInitCallback(element, configCallbacks) {
     if (configCallbacks['projectName'] && configCallbacks['callbackInit']) {
         $(element).on('init', function(event, slick){
             DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackInit']);
+        });
+    }
+}
+
+function configureReInitCallback(element, configCallbacks) {
+    if (configCallbacks['projectName'] && configCallbacks['callbackReInit']) {
+        $(element).on('reInit', function(event, slick){
+            DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackReInit']);
         });
     }
 }

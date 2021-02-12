@@ -35,7 +35,19 @@
     public string CallbackBeforeChange { get; set;}
 
     [Parameter]
+    public string CallbackBreakpoint { get; set;}
+
+    [Parameter]
+    public string CallbackDestroy { get; set;}
+
+    [Parameter]
+    public string CallbackEdge { get; set;}
+
+    [Parameter]
     public string CallbackInit { get; set;}
+
+    [Parameter]
+    public string CallbackReInit { get; set;}
 
     [Inject]
     protected IJSRuntime jsRuntime { get; set; }
@@ -55,7 +67,11 @@
                 ConfigCallbacks["projectName"] = ProjectName;
                 ConfigCallbacks["callbackAfterChange"] = CallbackAfterChange;
                 ConfigCallbacks["callbackBeforeChange"] = CallbackBeforeChange;
+                ConfigCallbacks["callbackBreakpoint"] = CallbackBreakpoint;
+                ConfigCallbacks["callbackDestroy"] = CallbackDestroy;
+                ConfigCallbacks["callbackEdge"] = CallbackEdge;
                 ConfigCallbacks["callbackInit"] = CallbackInit;
+                ConfigCallbacks["callbackReInit"] = CallbackReInit;
             await TheWMBSC.Init(WMBSCReference, Configurations, ConfigCallbacks);
         }
     }
