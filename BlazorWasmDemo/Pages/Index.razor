@@ -14,14 +14,30 @@ Welcome to your new app.
     CallbackDestroy="MyDestroy"
     CallbackEdge="MyEdge"
     CallbackInit="MyInit"
-    CallbackReInit="MyReInit">
+    CallbackReInit="MyReInit"
+    CallbackSetPosition="MySetPosition"
+    CallbackSwipe="MySwipe"
+    CallbackLazyLoaded="MyLazyLoaded"
+    CallbackLazyLoadError="MyLazyLoadError">
     <BlazorSlickCarouselContent>
-        <img src="https://loremflickr.com/540/240?random=1" alt="">
-        <img src="https://loremflickr.com/540/240?random=2" alt="">
-        <img src="https://loremflickr.com/540/240?random=3" alt="">
-        <img src="https://loremflickr.com/540/240?random=4" alt="">
-        <img src="https://loremflickr.com/540/240?random=5" alt="">
-        <img src="https://loremflickr.com/540/240?random=6" alt="">
+        <div>
+            <img data-lazy="https://loremflickr.com/540/240?random=1" alt="">
+        </div>
+        <div>
+            <img data-lazy="https://loremflickr.com/540/240?random=2" alt="">
+        </div>
+        <div>
+            <img data-lazy="https://loremflickr.com/540/240?random=3" alt="">
+        </div>
+        <div>
+            <img data-lazy="https://loremflickr.com/540/240?random=4" alt="">
+        </div>
+        <div>
+            <img data-lazy="https://loremflickr.com/540/240?random=5" alt="">
+        </div>
+        <div>
+            <img data-lazy="https://loremflickr.com/540/240?random=6" alt="">
+        </div>
     </BlazorSlickCarouselContent>
 </BlazorSlickCarousel>
 
@@ -107,6 +123,30 @@ Welcome to your new app.
     public static void MyReInit()
     {
         System.Console.WriteLine("MyReInit");
+    }
+
+    [JSInvokable]
+    public static void MySetPosition()
+    {
+        System.Console.WriteLine("MySetPosition");
+    }
+
+    [JSInvokable]
+    public static void MySwipe()
+    {
+        System.Console.WriteLine("MySwipe");
+    }
+
+    [JSInvokable]
+    public static void MyLazyLoaded(string imageSource)
+    {
+        System.Console.WriteLine("MyLazyLoaded");
+    }
+
+    [JSInvokable]
+    public static void MyLazyLoadError(string imageSource)
+    {
+        System.Console.WriteLine("MyLazyLoadError");
     }
 
     public async void ShowCurrentSlideIndex()

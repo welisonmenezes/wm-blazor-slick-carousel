@@ -30,8 +30,8 @@ export function WMBSCDestroy(element) {
     $(element).slick('unslick');
 }
 
-export function WMBSCConstroy(element, configurations, configCallbacks) {
-    initCarousel(element, configurations, configCallbacks);
+export function WMBSCConstroy(element, configurations) {
+    initCarousel(element, configurations, null);
 }
 
 function loadJquery(element, configurations, configCallbacks, addJquery) {
@@ -71,7 +71,7 @@ function initCarousel(element, configurations, configCallbacks) {
     {
         var config = (configurations) ? configurations : {};
         configureAppendDotsAndArrows(element, config);
-        configureCallbacks(element, configCallbacks);
+        if (configCallbacks) configureCallbacks(element, configCallbacks);
         $(element).slick(config);
         $(element).parent().removeClass('loading');
     }
@@ -147,6 +147,10 @@ function configureCallbacks(element, configCallbacks) {
     configureEdgeCallback(element, configCallbacks);
     configureInitCallback(element, configCallbacks);
     configureReInitCallback(element, configCallbacks);
+    configureSetPositionCallback(element, configCallbacks);
+    configureSwipeCallback(element, configCallbacks);
+    configureLazyLoadedCallback(element, configCallbacks);
+    configureLazyLoadErrorCallback(element, configCallbacks);
 }
 
 function configureAfterChangeCallback(element, configCallbacks) {
@@ -201,6 +205,38 @@ function configureReInitCallback(element, configCallbacks) {
     if (configCallbacks['projectName'] && configCallbacks['callbackReInit']) {
         $(element).on('reInit', function(event, slick){
             DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackReInit']);
+        });
+    }
+}
+
+function configureSetPositionCallback(element, configCallbacks) {
+    if (configCallbacks['projectName'] && configCallbacks['callbackSetPosition']) {
+        $(element).on('setPosition', function(event, slick){
+            DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackSetPosition']);
+        });
+    }
+}
+
+function configureSwipeCallback(element, configCallbacks) {
+    if (configCallbacks['projectName'] && configCallbacks['callbackSwipe']) {
+        $(element).on('swipe', function(event, slick){
+            DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackSwipe']);
+        });
+    }
+}
+
+function configureLazyLoadedCallback(element, configCallbacks) {
+    if (configCallbacks['projectName'] && configCallbacks['callbackLazyLoaded']) {
+        $(element).on('lazyLoaded', function(event, slick, image, imageSource){
+            DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackLazyLoaded'], imageSource);
+        });
+    }
+}
+
+function configureLazyLoadErrorCallback(element, configCallbacks) {
+    if (configCallbacks['projectName'] && configCallbacks['callbackLazyLoadError']) {
+        $(element).on('lazyLoadError', function(event, slick, image, imageSource){
+            DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackLazyLoadError'], imageSource);
         });
     }
 }

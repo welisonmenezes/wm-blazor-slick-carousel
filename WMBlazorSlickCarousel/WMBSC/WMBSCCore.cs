@@ -81,10 +81,10 @@ public sealed class WMBSCCore: IWMBSC
         await module.InvokeVoidAsync("WMBSCDestroy", this.element);
     }
 
-    public async Task SlickConstroy(WMBSCConfigurations configurations, Dictionary<string, string> configCallbacks)
+    public async Task SlickConstroy(WMBSCConfigurations configurations)
     {
         var module = await this.Module;
-        await module.InvokeVoidAsync("WMBSCConstroy", this.element, configurations, configCallbacks);
+        await module.InvokeVoidAsync("WMBSCConstroy", this.element, configurations);
     }
 
 }

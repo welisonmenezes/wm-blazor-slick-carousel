@@ -8,6 +8,12 @@ a, .btn-link {
     color: #0366d6;
 }
 
+img {
+    display: block;
+    width: auto;
+    max-width: 100%;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;

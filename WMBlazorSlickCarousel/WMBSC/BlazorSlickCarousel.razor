@@ -49,6 +49,18 @@
     [Parameter]
     public string CallbackReInit { get; set;}
 
+    [Parameter]
+    public string CallbackSetPosition { get; set;}
+
+    [Parameter]
+    public string CallbackSwipe { get; set;}
+
+    [Parameter]
+    public string CallbackLazyLoaded { get; set;}
+
+    [Parameter]
+    public string CallbackLazyLoadError { get; set;}
+
     [Inject]
     protected IJSRuntime jsRuntime { get; set; }
 
@@ -72,6 +84,10 @@
                 ConfigCallbacks["callbackEdge"] = CallbackEdge;
                 ConfigCallbacks["callbackInit"] = CallbackInit;
                 ConfigCallbacks["callbackReInit"] = CallbackReInit;
+                ConfigCallbacks["callbackSetPosition"] = CallbackSetPosition;
+                ConfigCallbacks["callbackSwipe"] = CallbackSwipe;
+                ConfigCallbacks["callbackLazyLoaded"] = CallbackLazyLoaded;
+                ConfigCallbacks["callbackLazyLoadError"] = CallbackLazyLoadError;
             await TheWMBSC.Init(WMBSCReference, Configurations, ConfigCallbacks);
         }
     }
@@ -118,7 +134,7 @@
 
     public async Task Constroy(WMBSCConfigurations configurations, Dictionary<string, string> configCallbacks)
     {
-        await TheWMBSC.SlickConstroy(configurations, configCallbacks);  
+        await TheWMBSC.SlickConstroy(configurations);  
     }
     
 }

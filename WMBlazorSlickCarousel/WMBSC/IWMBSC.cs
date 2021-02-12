@@ -15,5 +15,5 @@ public interface IWMBSC
     Task SlickAdd(string newItem);
     Task SlickRemove(int slideNumber, bool removeBefore);
     Task SlickDestroy();
-    Task SlickConstroy(WMBSCConfigurations configurations, Dictionary<string, string> configCallbacks);
+    Task SlickConstroy(WMBSCConfigurations configurations);
 }
