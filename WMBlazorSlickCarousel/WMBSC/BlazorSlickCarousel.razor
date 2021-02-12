@@ -25,6 +25,21 @@
     [Parameter]
     public WMBSCConfigurations Configurations { get; set; }
 
+    [Parameter]
+    public string ProjectName { get; set; }
+
+    [Parameter]
+    public string CallbackAfterChange { get; set;}
+
+    [Parameter]
+    public string CallbackBeforeChange { get; set;}
+
+    [Parameter]
+    public string CallbackInit { get; set;}
+
+    [Parameter]
+    public BlazorSlickCarousel Self { get; set; }
+
     [Inject]
     protected IJSRuntime jsRuntime { get; set; }
 
@@ -37,8 +52,12 @@
     {
         if (firstRender)
         {
-            System.Console.WriteLine("OnAfterRenderAsync");
-            await TheWMBSC.Init(WMBSCReference, Configurations);
+            Dictionary<string, string> ConfigCallbacks = new Dictionary<string, string>();
+                ConfigCallbacks["projectName"] = ProjectName;
+                ConfigCallbacks["callbackAfterChange"] = CallbackAfterChange;
+                ConfigCallbacks["callbackBeforeChange"] = CallbackBeforeChange;
+                ConfigCallbacks["callbackInit"] = CallbackInit;
+            await TheWMBSC.Init(WMBSCReference, Configurations, ConfigCallbacks);
         }
     }
 }

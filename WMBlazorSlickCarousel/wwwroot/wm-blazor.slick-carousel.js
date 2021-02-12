@@ -1,65 +1,48 @@
-export function WMBSCInit(element, configurations, addJquery) {
-    return loadJquery(element, configurations, addJquery);
+export function WMBSCInit(element, configurations, configCallbacks, addJquery) {
+    return loadJquery(element, configurations, configCallbacks, addJquery);
 }
 
-function loadJquery(element, configurations, addJquery) {
+function loadJquery(element, configurations, configCallbacks, addJquery) {
     if (hasJquery()) {
-        loadSlick(element, configurations);
+        loadSlick(element, configurations, configCallbacks);
     } else {
         if (addJquery) {
             return loadScript(
                 './_content/WMBlazorSlickCarousel/jquery-3.5.1.min.js',
                 loadSlick,
                 element,
-                configurations
+                configurations,
+                configCallbacks
             );
         }
-        return loadSlick(element, configurations);
+        return loadSlick(element, configurations, configCallbacks);
     }
 }
 
-function loadSlick(element, configurations) {
+function loadSlick(element, configurations, configCallbacks) {
     if (hasSlick()) {
-        initCarousel(element, configurations);
+        initCarousel(element, configurations, configCallbacks);
     } else {
         resolveNonPassiveIssue();
         return loadScript(
             './_content/WMBlazorSlickCarousel/slick.min.js',
             initCarousel,
             element,
-            configurations
+            configurations,
+            configCallbacks
         );
     }
 }
 
-function initCarousel(element, configurations) {
+function initCarousel(element, configurations, configCallbacks) {
     var config = (configurations) ? configurations : {};
-    _configureAppendDotsAndArrows(element, config);
+    configureAppendDotsAndArrows(element, config);
+    configureCallbacks(element, configCallbacks);
     $(element).slick(config);
     $(element).parent().removeClass('loading');
 }
 
-function _configureAppendDotsAndArrows(element, config) {
-    if (config.appendArrows === null) {
-        config.appendArrows = $(element);
-    }
-    if (config.appendDots === null) {
-        config.appendDots = $(element);
-    }
-    if (config.responsive) {
-        for(var i = 0; i < config.responsive.length; i++) {
-            var item = config.responsive[i].settings;
-            if (item.appendArrows === null) {
-                item.appendArrows = $(element);
-            }
-            if (item.appendDots === null) {
-                item.appendDots = $(element);
-            }
-        }
-    }
-}
-
-function loadScript(src, callback, element, configurations) {
+function loadScript(src, callback, element, configurations, configCallbacks) {
     var s, r, t;
     r = false;
     s = document.createElement('script');
@@ -69,7 +52,7 @@ function loadScript(src, callback, element, configurations) {
         if (!r && (!this.readyState || this.readyState === 'complete')) {
             r = true;
             if (callback && element) {
-                callback(element, configurations);
+                callback(element, configurations, configCallbacks);
             }
             return true;
         } else {
@@ -99,4 +82,54 @@ function resolveNonPassiveIssue() {
             this.addEventListener('touchmove', handle, { passive: !ns.includes('noPreventDefault') });
         }
     };
+}
+
+function configureAppendDotsAndArrows(element, config) {
+    if (config.appendArrows === null) {
+        config.appendArrows = $(element);
+    }
+    if (config.appendDots === null) {
+        config.appendDots = $(element);
+    }
+    if (config.responsive) {
+        for(var i = 0; i < config.responsive.length; i++) {
+            var item = config.responsive[i].settings;
+            if (item.appendArrows === null) {
+                item.appendArrows = $(element);
+            }
+            if (item.appendDots === null) {
+                item.appendDots = $(element);
+            }
+        }
+    }
+}
+
+function configureCallbacks(element, configCallbacks) {
+    configureAfterChangeCallback(element, configCallbacks);
+    configureBeforeChangeCallback(element, configCallbacks);
+    configureInitCallback(element, configCallbacks);
+}
+
+function configureAfterChangeCallback(element, configCallbacks) {
+    if (configCallbacks['projectName'] && configCallbacks['callbackAfterChange']) {
+        $(element).on('afterChange', function(event, slick, currentSlide){
+            DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackAfterChange'], currentSlide);
+        });
+    }
+}
+
+function configureBeforeChangeCallback(element, configCallbacks) {
+    if (configCallbacks['projectName'] && configCallbacks['callbackBeforeChange']) {
+        $(element).on('beforeChange', function(event, slick, currentSlide, nextSlide){
+            DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackBeforeChange'], currentSlide, nextSlide);
+        });
+    }
+}
+
+function configureInitCallback(element, configCallbacks) {
+    if (configCallbacks['projectName'] && configCallbacks['callbackInit']) {
+        $(element).on('init', function(event, slick){
+            DotNet.invokeMethodAsync(configCallbacks['projectName'], configCallbacks['callbackInit']);
+        });
+    }
 }

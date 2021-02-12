@@ -4,7 +4,12 @@
 
 Welcome to your new app.
 
-<BlazorSlickCarousel Configurations="configurations">
+<BlazorSlickCarousel 
+    Configurations="configurations" 
+    ProjectName="BlazorWasmDemo"
+    CallbackAfterChange="MyAfterChange"
+    CallbackBeforeChange="MyBeforeChange"
+    CallbackInit="MyInit">
     <BlazorSlickCarouselContent>
         <img src="https://loremflickr.com/540/240?random=1" alt="">
         <img src="https://loremflickr.com/540/240?random=2" alt="">
@@ -56,5 +61,23 @@ Welcome to your new app.
             infinite = true,
             responsive = responsiveList
         };
+    }
+
+    [JSInvokable]
+    public static void MyAfterChange(int currentSlide)
+    {
+        System.Console.WriteLine("MyAfterChange");
+    }
+
+    [JSInvokable]
+    public static void MyBeforeChange(int currentSlide, int nextSlide)
+    {
+        System.Console.WriteLine("MyBeforeChange");
+    }
+
+    [JSInvokable]
+    public static void MyInit()
+    {
+        System.Console.WriteLine("MyInit");
     }
 }

@@ -6,7 +6,7 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-<BlazorSlickCarousel>
+<BlazorSlickCarousel Configurations="configurations">
     <BlazorSlickCarouselContent>
         <div>Item 1 Car 1</div>
         <div>Item 2 Car 1</div>
@@ -17,11 +17,29 @@
     <BlazorSlickCarouselLoading>Carregando...</BlazorSlickCarouselLoading>
 </BlazorSlickCarousel>
 
+<div class="dots"></div>
+<div class="arrows"></div>
+
 @code {
     private int currentCount = 0;
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    public WMBSCConfigurations configurations;
+
+    protected override async Task OnInitializedAsync()
+    {
+        configurations = new WMBSCConfigurations {
+            arrows = true,
+            dots = true,
+            slidesToShow = 2,
+            slidesToScroll = 1,
+            infinite = true,
+            appendDots = ".dots",
+            appendArrows = ".arrows"
+        };
     }
 }
