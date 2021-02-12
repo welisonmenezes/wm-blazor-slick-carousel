@@ -4,7 +4,7 @@
 
 Welcome to your new app.
 
-<BlazorSlickCarousel>
+<BlazorSlickCarousel Configurations="configurations">
     <BlazorSlickCarouselContent>
         <img src="https://loremflickr.com/540/240?random=1" alt="">
         <img src="https://loremflickr.com/540/240?random=2" alt="">
@@ -29,3 +29,32 @@ Welcome to your new app.
 </BlazorSlickCarousel>
 
 <SurveyPrompt Title="How is Blazor working for you?" />
+
+@code {
+    public WMBSCConfigurations configurations;
+    public WMBSCResponsive responsive;
+    public WMBSCOptions options;
+    public List<WMBSCResponsive> responsiveList;
+
+    protected override async Task OnInitializedAsync()
+    {
+        options = new WMBSCOptions {
+            slidesToShow = 1,
+            arrows = true
+        };
+        responsive = new WMBSCResponsive {
+            breakpoint = 400,
+            settings = options
+        };
+        responsiveList = new List<WMBSCResponsive>();
+        responsiveList.Add(responsive);
+        configurations = new WMBSCConfigurations {
+            arrows = true,
+            dots = true,
+            slidesToShow = 2,
+            slidesToScroll = 1,
+            infinite = true,
+            responsive = responsiveList
+        };
+    }
+}

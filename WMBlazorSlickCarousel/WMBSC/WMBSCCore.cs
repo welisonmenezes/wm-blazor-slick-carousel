@@ -30,10 +30,10 @@ public sealed class WMBSCCore: IWMBSC
         this.addJquery = addJquery;
     }
 
-    public async Task Init(ElementReference element)
+    public async Task Init(ElementReference element, WMBSCConfigurations configurations)
     {
         var module = await this.Module;
-        string ret = await module.InvokeAsync<string>("WMBSCInit", element, this.addJquery);
+        string ret = await module.InvokeAsync<string>("WMBSCInit", element, configurations, this.addJquery);
         System.Console.WriteLine(addJquery);
         System.Console.WriteLine("O retorno do js é: " + ret);
     }

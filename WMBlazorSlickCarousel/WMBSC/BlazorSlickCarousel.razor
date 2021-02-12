@@ -22,19 +22,23 @@
     [Parameter]
     public bool addJquery { get; set; }
 
+    [Parameter]
+    public WMBSCConfigurations Configurations { get; set; }
+
     [Inject]
     protected IJSRuntime jsRuntime { get; set; }
 
     [Inject]
     protected IWMBSC TheWMBSC { get; set; }
-    
+
     ElementReference WMBSCReference;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            await TheWMBSC.Init(WMBSCReference);
+            System.Console.WriteLine("OnAfterRenderAsync");
+            await TheWMBSC.Init(WMBSCReference, Configurations);
         }
     }
 }
