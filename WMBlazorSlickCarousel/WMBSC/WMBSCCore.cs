@@ -57,4 +57,34 @@ public sealed class WMBSCCore: IWMBSC
         await module.InvokeVoidAsync("WMBSCPrev", this.element);
     }
 
+    public async Task SlickAdd(ElementReference newItem)
+    {
+        var module = await this.Module;
+        await module.InvokeVoidAsync("WMBSCAdd", this.element, newItem);
+    }
+
+    public async Task SlickAdd(string newItem)
+    {
+        var module = await this.Module;
+        await module.InvokeVoidAsync("WMBSCAdd", this.element, newItem);
+    }
+
+    public async Task SlickRemove(int slideNumber, bool removeBefore)
+    {
+        var module = await this.Module;
+        await module.InvokeVoidAsync("WMBSCRemove", this.element, slideNumber, removeBefore);
+    }
+
+    public async Task SlickDestroy()
+    {
+        var module = await this.Module;
+        await module.InvokeVoidAsync("WMBSCDestroy", this.element);
+    }
+
+    public async Task SlickConstroy(WMBSCConfigurations configurations, Dictionary<string, string> configCallbacks)
+    {
+        var module = await this.Module;
+        await module.InvokeVoidAsync("WMBSCConstroy", this.element, configurations, configCallbacks);
+    }
+
 }

@@ -11,4 +11,9 @@ public interface IWMBSC
     Task SlickGoTo(int slideNumber);
     Task SlickNext();
     Task SlickPrev();
+    Task SlickAdd(ElementReference newItem);
+    Task SlickAdd(string newItem);
+    Task SlickRemove(int slideNumber, bool removeBefore);
+    Task SlickDestroy();
+    Task SlickConstroy(WMBSCConfigurations configurations, Dictionary<string, string> configCallbacks);
 }

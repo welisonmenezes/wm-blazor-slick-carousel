@@ -26,6 +26,10 @@ Welcome to your new app.
     <button @onclick="@(e => GoTo(2))">Go To 3</button>
     <button @onclick="@(e => Next())">Next Slide</button>
     <button @onclick="@(e => Prev())">Prev Slide</button>
+    <button @onclick="@(e => Add())">Add New Item</button>
+    <button @onclick="@(e => Remove(1, false))">Remove</button>
+    <button @onclick="@(e => Destroy())">Destroy</button>
+    <button @onclick="@(e => Constroy())">Constroy</button>
 </div>
 
 <SurveyPrompt Title="How is Blazor working for you?" />
@@ -96,5 +100,25 @@ Welcome to your new app.
     public async void Prev() 
     {
         await theCarousel.Prev();
+    }
+
+    public async void Add() 
+    {
+        await theCarousel.Add("<img src='https://loremflickr.com/540/240?random=7' />");
+    }
+
+    public async void Remove(int slideNumber, bool removeBefore)
+    {
+        await theCarousel.Remove(slideNumber, removeBefore);
+    }
+
+    public async void Destroy()
+    {
+        await theCarousel.Destroy();
+    }
+
+    public async void Constroy()
+    {
+        await theCarousel.Constroy(theCarousel.Configurations, theCarousel.ConfigCallbacks);
     }
 }

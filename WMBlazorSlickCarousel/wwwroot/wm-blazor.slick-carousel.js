@@ -18,6 +18,22 @@ export function WMBSCPrev(element) {
     $(element).slick('slickPrev');
 }
 
+export function WMBSCAdd(element, newItem) {
+    $(element).slick('slickAdd', newItem);
+}
+
+export function WMBSCRemove(element, slideNumber, removeBefore) {
+    $(element).slick('slickRemove', slideNumber, removeBefore);
+}
+
+export function WMBSCDestroy(element) {
+    $(element).slick('unslick');
+}
+
+export function WMBSCConstroy(element, configurations, configCallbacks) {
+    initCarousel(element, configurations, configCallbacks);
+}
+
 function loadJquery(element, configurations, configCallbacks, addJquery) {
     if (hasJquery()) {
         loadSlick(element, configurations, configCallbacks);
@@ -51,11 +67,14 @@ function loadSlick(element, configurations, configCallbacks) {
 }
 
 function initCarousel(element, configurations, configCallbacks) {
-    var config = (configurations) ? configurations : {};
-    configureAppendDotsAndArrows(element, config);
-    configureCallbacks(element, configCallbacks);
-    $(element).slick(config);
-    $(element).parent().removeClass('loading');
+    if (!$(element).hasClass('slick-initialized'))
+    {
+        var config = (configurations) ? configurations : {};
+        configureAppendDotsAndArrows(element, config);
+        configureCallbacks(element, configCallbacks);
+        $(element).slick(config);
+        $(element).parent().removeClass('loading');
+    }
 }
 
 function loadScript(src, callback, element, configurations, configCallbacks) {

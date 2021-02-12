@@ -43,13 +43,15 @@
     [Inject]
     protected IWMBSC TheWMBSC { get; set; }
 
+    public Dictionary<string, string> ConfigCallbacks;
+
     ElementReference WMBSCReference;
 
     protected override async Task OnAfterRenderAsync(bool firstRender)
     {
         if (firstRender)
         {
-            Dictionary<string, string> ConfigCallbacks = new Dictionary<string, string>();
+            ConfigCallbacks = new Dictionary<string, string>();
                 ConfigCallbacks["projectName"] = ProjectName;
                 ConfigCallbacks["callbackAfterChange"] = CallbackAfterChange;
                 ConfigCallbacks["callbackBeforeChange"] = CallbackBeforeChange;
@@ -58,20 +60,49 @@
         }
     }
 
-    public async Task<int> CurrentSlide() {
+    public async Task<int> CurrentSlide()
+        {
         return await TheWMBSC.SlickCurrentSlide();
     }
 
-    public async Task GoTo(int slideNumber) {
+    public async Task GoTo(int slideNumber)
+    {
         await TheWMBSC.SlickGoTo(slideNumber);
     }
 
-    public async Task Next() {
+    public async Task Next()
+    {
         await TheWMBSC.SlickNext();
     }
 
-    public async Task Prev() {
+    public async Task Prev()
+    {
         await TheWMBSC.SlickPrev();
+    }
+
+    public async Task Add(ElementReference newItem)
+    {
+        await TheWMBSC.SlickAdd(newItem);
+    }
+
+    public async Task Add(string newItem)
+    {
+        await TheWMBSC.SlickAdd(newItem);
+    }
+
+    public async Task Remove(int slideNumber, bool removeBefore)
+    {
+        await TheWMBSC.SlickRemove(slideNumber, removeBefore);
+    }
+
+    public async Task Destroy()
+    {
+        await TheWMBSC.SlickDestroy();  
+    }
+
+    public async Task Constroy(WMBSCConfigurations configurations, Dictionary<string, string> configCallbacks)
+    {
+        await TheWMBSC.SlickConstroy(configurations, configCallbacks);  
     }
     
 }
