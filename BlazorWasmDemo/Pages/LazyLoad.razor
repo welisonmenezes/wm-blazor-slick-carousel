@@ -1,0 +1,60 @@
+@page "/lazy-load"
+
+<div>
+
+    <h1>Blazor Slick Carousel Demo</h1>
+    <h2>Lazy Load implementation demo.</h2>
+
+    <br><hr><br>
+
+    <BlazorSlickCarousel @ref="theCarousel" Configurations="configurations" >
+        <BlazorSlickCarouselContent>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=30" alt="">
+            </div>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=31" alt="">
+            </div>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=32" alt="">
+            </div>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=33" alt="">
+            </div>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=34" alt="">
+            </div>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=35" alt="">
+            </div>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=36" alt="">
+            </div>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=37" alt="">
+            </div>
+        </BlazorSlickCarouselContent>
+        <BlazorSlickCarouselLoading>
+            <p>Loading...</p>
+        </BlazorSlickCarouselLoading>
+    </BlazorSlickCarousel>
+
+    <br><br><br>
+    
+</div>
+
+@code {
+    public BlazorSlickCarousel theCarousel;
+    public WMBSCInitialSettings configurations;
+
+    protected override void OnInitialized()
+    {
+        configurations = new WMBSCInitialSettings {
+            arrows = true,
+            dots = true,
+            slidesToShow = 3,
+            slidesToScroll = 3,
+            infinite = false
+        };
+    }
+}

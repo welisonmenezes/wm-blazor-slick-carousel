@@ -1,0 +1,44 @@
+@page "/custom-settings"
+
+<div>
+
+    <h1>Blazor Slick Carousel Demo</h1>
+    <h2>Custom settings implementation demo.</h2>
+
+    <br><hr><br>
+
+    <BlazorSlickCarousel @ref="theCarousel" Configurations="configurations" >
+        <BlazorSlickCarouselContent>
+            <img src="https://loremflickr.com/400/400?random=1" alt="">
+            <img src="https://loremflickr.com/400/400?random=2" alt="">
+            <img src="https://loremflickr.com/400/400?random=3" alt="">
+            <img src="https://loremflickr.com/400/400?random=4" alt="">
+            <img src="https://loremflickr.com/400/400?random=5" alt="">
+            <img src="https://loremflickr.com/400/400?random=6" alt="">
+            <img src="https://loremflickr.com/400/400?random=7" alt="">
+            <img src="https://loremflickr.com/400/400?random=8" alt="">
+        </BlazorSlickCarouselContent>
+        <BlazorSlickCarouselLoading>
+            <p>Loading...</p>
+        </BlazorSlickCarouselLoading>
+    </BlazorSlickCarousel>
+
+    <br><br><br>
+    
+</div>
+
+@code {
+    public BlazorSlickCarousel theCarousel;
+    public WMBSCInitialSettings configurations;
+
+    protected override void OnInitialized()
+    {
+        configurations = new WMBSCInitialSettings {
+            arrows = true,
+            dots = true,
+            slidesToShow = 3,
+            slidesToScroll = 3,
+            infinite = false
+        };
+    }
+}

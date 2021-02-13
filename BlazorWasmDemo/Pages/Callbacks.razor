@@ -1,0 +1,158 @@
+﻿@page "/callbacks"
+
+<div>
+
+    <h1>Blazor Slick Carousel Demo</h1>
+    <h2>Callbacks implementation demo.</h2>
+    <p>Check the browser dev tools to see the logs printed.</p>
+    
+    <br><hr><br>
+
+    <BlazorSlickCarousel 
+        @ref="theCarousel"
+        Configurations="configurations" 
+        ProjectName="BlazorWasmDemo"
+        CallbackAfterChange="SampleAfterChange"
+        CallbackBeforeChange="SampleBeforeChange"
+        CallbackBreakpoint="SampleBreakpoint"
+        CallbackDestroy="SampleDestroy"
+        CallbackEdge="SampleEdge"
+        CallbackInit="SampleInit"
+        CallbackReInit="SampleReInit"
+        CallbackSetPosition="SampleSetPosition"
+        CallbackSwipe="SampleSwipe"
+        CallbackLazyLoaded="SampleLazyLoaded"
+        CallbackLazyLoadError="SampleLazyLoadError">
+
+        <BlazorSlickCarouselContent>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=1" alt="">
+            </div>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=2" alt="">
+            </div>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=3" alt="">
+            </div>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=4" alt="">
+            </div>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=5" alt="">
+            </div>
+            <div>
+                <img data-lazy="https://loremflickr.com/400/400?random=6" alt="">
+            </div>
+        </BlazorSlickCarouselContent>
+
+    </BlazorSlickCarousel>
+
+    <br><br><br>
+    
+</div>
+
+@code {
+    public BlazorSlickCarousel theCarousel;
+    public WMBSCInitialSettings configurations;
+
+    protected override void OnInitialized()
+    {
+        /************************************************************
+         *
+         *  CONFIGURATIONS
+         *
+         ************************************************************/
+        WMBSCSettings breakpoint400Settings = new WMBSCSettings {
+            slidesToShow = 1,
+            arrows = true
+        };
+        WMBSCResponsiveSettings responsive = new WMBSCResponsiveSettings {
+            breakpoint = 400,
+            settings = breakpoint400Settings
+        };
+
+        List<WMBSCResponsiveSettings> responsiveSettingsList = new List<WMBSCResponsiveSettings>();
+        responsiveSettingsList.Add(responsive);
+
+        configurations = new WMBSCInitialSettings {
+            arrows = true,
+            dots = true,
+            slidesToShow = 2,
+            slidesToScroll = 1,
+            infinite = false,
+            responsive = responsiveSettingsList
+        };
+    }
+
+    /************************************************************
+     *
+     *  CALLBACKS
+     *
+     ************************************************************/
+
+    [JSInvokable]
+    public static void SampleAfterChange(int currentSlide)
+    {
+        System.Console.WriteLine("SampleAfterChange");
+    }
+
+    [JSInvokable]
+    public static void SampleBeforeChange(int currentSlide, int nextSlide)
+    {
+        System.Console.WriteLine("SampleBeforeChange");
+    }
+
+    [JSInvokable]
+    public static void SampleBreakpoint(object breakpoint)
+    {
+        System.Console.WriteLine("SampleBreakpoint");
+    }
+
+    [JSInvokable]
+    public static void SampleDestroy()
+    {
+        System.Console.WriteLine("SampleDestroy");
+    }
+
+    [JSInvokable]
+    public static void SampleEdge()
+    {
+        System.Console.WriteLine("SampleEdge");
+    }
+
+    [JSInvokable]
+    public static void SampleInit()
+    {
+        System.Console.WriteLine("SampleInit");
+    }
+
+    [JSInvokable]
+    public static void SampleReInit()
+    {
+        System.Console.WriteLine("SampleReInit");
+    }
+
+    [JSInvokable]
+    public static void SampleSetPosition()
+    {
+        System.Console.WriteLine("SampleSetPosition");
+    }
+
+    [JSInvokable]
+    public static void SampleSwipe()
+    {
+        System.Console.WriteLine("SampleSwipe");
+    }
+
+    [JSInvokable]
+    public static void SampleLazyLoaded(string imageSource)
+    {
+        System.Console.WriteLine("SampleLazyLoaded");
+    }
+
+    [JSInvokable]
+    public static void SampleLazyLoadError(string imageSource)
+    {
+        System.Console.WriteLine("SampleLazyLoadError");
+    }
+}

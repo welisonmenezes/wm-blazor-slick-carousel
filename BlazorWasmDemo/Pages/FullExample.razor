@@ -29,26 +29,28 @@
 
         <BlazorSlickCarouselContent>
             <div>
-                <img data-lazy="https://loremflickr.com/400/400?random=1" alt="">
+                <img data-lazy="https://loremflickr.com/400/400?random=7" alt="">
             </div>
             <div>
-                <img data-lazy="https://loremflickr.com/400/400?random=2" alt="">
+                <img data-lazy="https://loremflickr.com/400/400?random=8" alt="">
             </div>
             <div>
-                <img data-lazy="https://loremflickr.com/400/400?random=3" alt="">
+                <img data-lazy="https://loremflickr.com/400/400?random=9" alt="">
             </div>
             <div>
-                <img data-lazy="https://loremflickr.com/400/400?random=4" alt="">
+                <img data-lazy="https://loremflickr.com/400/400?random=10" alt="">
             </div>
             <div>
-                <img data-lazy="https://loremflickr.com/400/400?random=5" alt="">
+                <img data-lazy="https://loremflickr.com/400/400?random=11" alt="">
             </div>
             <div>
-                <img data-lazy="https://loremflickr.com/400/400?random=6" alt="">
+                <img data-lazy="https://loremflickr.com/400/400?random=12" alt="">
             </div>
         </BlazorSlickCarouselContent>
 
     </BlazorSlickCarousel>
+    
+    <br><hr><br>
 
     <div>
         <button class="btn btn-primary btn-sm" @onclick="@(e => ShowCurrentSlideIndex())">Log the Current Slide</button>
@@ -60,6 +62,8 @@
         <button class="btn btn-primary btn-sm" @onclick="@(e => Destroy())">Destroy</button>
         <button class="btn btn-primary btn-sm" @onclick="@(e => Constroy())">Constroy</button>
     </div>
+
+    <br><br><br>
 
 </div>
 
@@ -198,7 +202,7 @@
 
     public async void Add() 
     {
-        await theCarousel.Add("<div><img src='https://loremflickr.com/400/400?random=7' /></div>");
+        await theCarousel.Add("<div><img src='https://loremflickr.com/400/400?random=13' /></div>");
     }
 
     public async void Remove(int slideNumber, bool removeBefore)

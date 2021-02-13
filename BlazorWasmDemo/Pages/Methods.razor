@@ -1,0 +1,99 @@
+@page "/methods"
+
+<div>
+
+    <h1>Blazor Slick Carousel Demo</h1>
+    <h2>Methods implementation demo.</h2>
+    <p>Check the browser dev tools to see the logs printed.</p>
+
+    <br><hr><br>
+
+    <BlazorSlickCarousel @ref="theCarousel" Configurations="configurations" >
+        <BlazorSlickCarouselContent>
+            <img src="https://loremflickr.com/400/400?random=38" alt="">
+            <img src="https://loremflickr.com/400/400?random=39" alt="">
+            <img src="https://loremflickr.com/400/400?random=40" alt="">
+            <img src="https://loremflickr.com/400/400?random=41" alt="">
+            <img src="https://loremflickr.com/400/400?random=42" alt="">
+            <img src="https://loremflickr.com/400/400?random=43" alt="">
+            <img src="https://loremflickr.com/400/400?random=44" alt="">
+            <img src="https://loremflickr.com/400/400?random=45" alt="">
+        </BlazorSlickCarouselContent>
+        <BlazorSlickCarouselLoading>
+            <p>Loading...</p>
+        </BlazorSlickCarouselLoading>
+    </BlazorSlickCarousel>
+
+    <br><hr><br>
+
+    <div>
+        <button class="btn btn-primary btn-sm" @onclick="@(e => ShowCurrentSlideIndex())">Log the Current Slide</button>
+        <button class="btn btn-primary btn-sm" @onclick="@(e => GoTo(52))">Go To 6</button>
+        <button class="btn btn-primary btn-sm" @onclick="@(e => Next())">Next Slide</button>
+        <button class="btn btn-primary btn-sm" @onclick="@(e => Prev())">Prev Slide</button>
+        <button class="btn btn-primary btn-sm" @onclick="@(e => Add())">Add New Item</button>
+        <button class="btn btn-primary btn-sm" @onclick="@(e => Remove(1, false))">Remove</button>
+        <button class="btn btn-primary btn-sm" @onclick="@(e => Destroy())">Destroy</button>
+        <button class="btn btn-primary btn-sm" @onclick="@(e => Constroy())">Constroy</button>
+    </div>
+
+    <br><br><br>
+    
+</div>
+
+@code {
+    public BlazorSlickCarousel theCarousel;
+    public WMBSCInitialSettings configurations;
+
+    protected override void OnInitialized()
+    {
+        configurations = new WMBSCInitialSettings {
+            arrows = true,
+            dots = true,
+            slidesToShow = 3,
+            slidesToScroll = 3,
+            infinite = false
+        };
+    }
+
+    public async void ShowCurrentSlideIndex()
+    {
+        int currentSlide = await theCarousel.CurrentSlide();
+        System.Console.WriteLine(currentSlide);
+    }
+
+    public async void GoTo(int slideNumber) 
+    {
+        await theCarousel.GoTo(slideNumber);
+    }
+
+    public async void Next() 
+    {
+        await theCarousel.Next();
+    }
+
+    public async void Prev() 
+    {
+        await theCarousel.Prev();
+    }
+
+    public async void Add() 
+    {
+        await theCarousel.Add("<div><img src='https://loremflickr.com/400/400?random=46' /></div>");
+    }
+
+    public async void Remove(int slideNumber, bool removeBefore)
+    {
+        await theCarousel.Remove(slideNumber, removeBefore);
+    }
+
+    public async void Destroy()
+    {
+        await theCarousel.Destroy();
+    }
+
+    public async void Constroy()
+    {
+        await theCarousel.Constroy(theCarousel.Configurations, theCarousel.ConfigCallbacks);
+    }
+}
