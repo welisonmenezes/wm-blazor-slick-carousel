@@ -1,0 +1,6 @@
+::deep .WMBSC {
+    max-width: 400px;
+}
+::deep .slick-list {
+    min-height: 200px;
+}
