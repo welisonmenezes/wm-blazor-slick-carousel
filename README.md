@@ -2,6 +2,11 @@
 ### It is a responsive carousel component to Blazor Wasm and Blazor Server aplications.
 
 
+## Live Demo
+
+https://welisonmenezes.github.io/wm-blazor-slick-carousel/
+
+
 ## Setting up
 
 First, import the namespaces in `_Imports.razor`
