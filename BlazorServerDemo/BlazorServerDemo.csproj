@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-  <!-- <PackageReference Include="WMBlazorSlickCarousel" Version="1.0.0" /> -->
+    <!-- <PackageReference Include="WMBlazorSlickCarousel" Version="1.0.1" /> -->
     <ProjectReference Include="..\WMBlazorSlickCarousel\WMBlazorSlickCarousel.csproj" />
   </ItemGroup>
 

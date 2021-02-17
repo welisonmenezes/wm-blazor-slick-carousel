@@ -5,10 +5,11 @@
     <Authors>Welison Menezes</Authors>
     <Description>Blazor Slick CarouselIt is a responsive carousel component to Blazor Wasm and Blazor Server aplications.</Description>
     <Copyright>MIT</Copyright>
-    <PackageProjectUrl>https://github.com/welisonmenezes/wm-blazor-slick-carousel</PackageProjectUrl>
+    <PackageProjectUrl>https://welisonmenezes.github.io/wm-blazor-slick-carousel/</PackageProjectUrl>
     <RepositoryUrl>https://github.com/welisonmenezes/wm-blazor-slick-carousel</RepositoryUrl>
     <RepositoryType>Github</RepositoryType>
     <PackageTags>Carousel BlazorCarousel BlazorWasmCarousel BlazorServerCarousel Slick BlazorSlick BalzorSlickCarousel ResponsiveCarousel</PackageTags>
+    <Version>1.0.1</Version>
   </PropertyGroup>
 
   
