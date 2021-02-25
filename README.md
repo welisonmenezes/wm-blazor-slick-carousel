@@ -6,6 +6,10 @@
 
 https://welisonmenezes.github.io/wm-blazor-slick-carousel/
 
+## NuGet Package
+
+https://www.nuget.org/packages/WMBlazorSlickCarousel/
+
 
 ## Setting up
 
